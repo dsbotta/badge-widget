@@ -1,0 +1,35 @@
+extends ./layout.jade
+
+block content
+    #outer-container(style="margin-top: 100px; height: auto;")
+        #profile-container
+          ul(class="nav nav-tabs" role="tablist")
+            li(role="presentation" class="active")
+              a(href="#profile-tab" aria-controls="profile-tab" role="tab" data-toggle="tab") Profile
+            li(role="presentation")
+              a(href="#points-tab" aria-controls="points-tab" role="tab" data-toggle="tab") Points
+            li(role="presentation")
+              a(href="#recent-badges-tab" aria-controls="recent-badges-tab" role="tab" data-toggle="tab") Recent Badges
+          div.tab-content
+            div(role="tabpanel" class="tab-pane active" id="profile-tab")
+              div(id='profile')
+                img(src="http://i.imgur.com/KMi72wU.png" alt="Avatar" id="avatar")
+                p
+                  span @waldo
+                ul
+                  li
+                    span 154 
+                  Badges earned
+                    li 652
+                  Total points
+            div(role="tabpanel" class="tab-pane" id="points-tab")
+              div(id='profile')
+                .point-total
+                  h4 JavaScript
+                  div(class="points-length") 1000
+            div(role="tabpanel" class="tab-pane" id="recent-badges-tab")
+              div(id='profile')
+        a(class="search-again" href="/") search again
+    script(src="http://code.jquery.com/jquery-1.11.3.min.js")
+    script(src="/static/bootstrap/js/bootstrap.min.js")
+    script(src="/static/js/app.js")
