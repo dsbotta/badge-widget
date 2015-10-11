@@ -1,6 +1,7 @@
 var express = require('express');
 var createObject = require(__dirname + '/custom-modules/create_object.js');
 var http = require("http");
+var querystring = require('querystring');
 
 var app = express();
 app.use('/static', express.static(__dirname + '/public'));
@@ -12,6 +13,30 @@ app.set('views', __dirname + '/templates');
 // 	res.render('index');
 
 // });
+
+app.post('/', function(req, res) {
+
+    if ( req.method.toLowerCase() === 'post' ) {
+
+        req.on('data', function(postBody) {
+
+            var username = postBody.toString();
+
+            var notValid = false;
+            var notValidArray = ['<script', '<?php', 'script>', '?>'];
+
+            username.replace(/[^a-zA-Z0-9]/g, '')
+
+            var query = querystring.parse(username);
+
+            res.writeHead(303, { Location: '/' + query.username });
+            res.end();  
+
+        });
+
+    }
+
+});
 
 app.get('/:username?', function(req, res) {
 
@@ -46,7 +71,7 @@ app.get('/:username?', function(req, res) {
         });
     } else {
 
-        res.render('index');    
+        res.render('index'); 
 
     }
 
