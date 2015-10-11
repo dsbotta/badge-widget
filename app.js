@@ -7,39 +7,48 @@ app.use('/static', express.static(__dirname + '/public'));
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/templates');
 
-app.get('/', function(req, res) {
+// app.get('/', function(req, res) {
 
-	res.render('index');
+// 	res.render('index');
 
-});
+// });
 
-app.get('/:username', function(req, res) {
+app.get('/:username?', function(req, res) {
 
 	var username = req.params.username;
 
-	//Connect to the API URL (http://teamtreehouse.com/username.json)
-    var request = http.get("http://teamtreehouse.com/" + username + ".json", function(response) {
-        var body = "";
+    if (username) {
 
-        //Read the data
-        response.on('data', function (chunk) {
-            body += chunk;
-        });
+    	//Connect to the API URL (http://teamtreehouse.com/username.json)
+        var request = http.get("http://teamtreehouse.com/" + username + ".json", function(response) {
+            var body = "";
 
-        response.on('end', function () {
-            if(response.statusCode === 200) {
-                try {
-                    //Parse the data
-                    var profile = JSON.parse(body);
-                    var newProfile = createObject(profile);
-                    res.render('profile', { newProfile: newProfile, profile: profile });
-                } catch (error) {
-                    console.log(error);
+            //Read the data
+            response.on('data', function (chunk) {
+                body += chunk;
+            });
+
+            response.on('end', function () {
+                if(response.statusCode === 200) {
+                    try {
+                        //Parse the data
+                        var profile = JSON.parse(body);
+                        var newProfile = createObject(profile);
+                        res.render('profile', { newProfile: newProfile, profile: profile });
+                    } catch (error) {
+                        console.log(error);
+                    }
+                } else {
+                    res.render('index');
                 }
-            }
-        })
+            })
 
-    });
+        });
+    } else {
+
+        res.render('index');    
+
+    }
 
 	// res.render('profile');
 
