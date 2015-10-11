@@ -64,7 +64,7 @@ app.get('/:username?', function(req, res) {
                         console.log(error);
                     }
                 } else {
-                    res.render('index');
+                    res.render('error', {username: username});
                 }
             })
 

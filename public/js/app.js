@@ -6,14 +6,14 @@
 	  $(this).tab('show')
 	});
 
-	// if ( $('#error').length !== 0 ) {
-
-	// }
-
 })();
 
 $(document).ready(function() {
 
-	$('#error').removeClass('hide-header');
+	if ( $('#error').length !== 0 ) {
+
+		$('#error').removeClass('hide-header');
+
+	}
 
 });
