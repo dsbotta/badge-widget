@@ -1,0 +1,10 @@
+extends ./layout.jade
+
+block content
+		div(id="error" class="hide-header animate-error") There was an error getting the profile for #{ username }. (Not Found)
+		div(id="outer-container")
+			div(id="inner-container")
+				img#searchIcon(src='http://i.imgur.com/VKKm0pn.png', alt='Magnifying Glass')
+				form(action='/', method='POST')
+					input#username(type='text', placeholder='Enter a Treehouse username', name='username')
+					input.button(type='submit', value='search')
