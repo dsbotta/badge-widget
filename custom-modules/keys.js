@@ -8,7 +8,8 @@ function returnKeys(object) {
 	function returnTotalKey(keysArray) {
 		for(var i in keysArray) {
 			if (keysArray[i].toLowerCase() !== "total") {
-				newKeysArray.push(keysArray[i]);
+				if (object.points[keysArray[i]] > 350 )
+					newKeysArray.push(keysArray[i]);
 			}
 		}
 	}

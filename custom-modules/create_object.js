@@ -11,6 +11,9 @@ function createObject(object) {
 			pointsObject[keys[i]]['name'] = keys[i];
 			pointsObject[keys[i]]['number'] = object.points[keys[i]];
 			var newNum = (100/greatestKey(newObj)) * pointsObject[keys[i]]['number'];
+			if (newNum < 5) {
+				newNum = 5;
+			}
 			pointsObject[keys[i]]['length'] = newNum;
 		}
 	}

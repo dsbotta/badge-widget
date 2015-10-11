@@ -131,3 +131,13 @@ span {
     text-align: right;
     margin-bottom: 10px;
 }
+
+.badges {
+    width: 100px;
+    display: block;
+    margin: auto;
+}
+
+#profile a h4 {
+    margin-top: 0px;
+}

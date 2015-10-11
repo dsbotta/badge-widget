@@ -9,26 +9,36 @@ block content
             li(role="presentation")
               a(href="#points-tab" aria-controls="points-tab" role="tab" data-toggle="tab") Points
             li(role="presentation")
-              a(href="#recent-badges-tab" aria-controls="recent-badges-tab" role="tab" data-toggle="tab") Recent Badges
+              a(href="#recent-badges-tab" aria-controls="recent-badges-tab" role="tab" data-toggle="tab") Badges
           div.tab-content
             div(role="tabpanel" class="tab-pane active" id="profile-tab")
               div(id='profile')
-                img(src="http://i.imgur.com/KMi72wU.png" alt="Avatar" id="avatar")
+                img(src="#{ profile.gravatar_url }" alt="Avatar" id="avatar")
                 p
-                  span @waldo
+                  span @#{ profile.profile_name }
                 ul
-                  li
-                    span 154 
-                  Badges earned
-                    li 652
-                  Total points
+                  li #{ profile.badges.length } 
+                    span Badges earned
+                  li #{ profile.points.total } 
+                    span Total points
             div(role="tabpanel" class="tab-pane" id="points-tab")
               div(id='profile')
-                .point-total
-                  h4 JavaScript
-                  div(class="points-length") 1000
+                for profile in newProfile
+                  .point-total
+                    h4 #{ profile.name }
+                    div(class="points-length", style="width: #{ profile.length }%; background:#{ profile.color };") #{ profile.number }
             div(role="tabpanel" class="tab-pane" id="recent-badges-tab")
               div(id='profile')
+                h2 Recent Badges
+                a(href="#{ profile.badges[profile.badges.length - 2]['url'] }")
+                  img(class="badges" src="#{ profile.badges[profile.badges.length - 2]['icon_url'] }", alt="#{ profile.badges[profile.badges.length - 2].name }")
+                  h4 #{ profile.badges[profile.badges.length - 2].name }
+                a(href="#{ profile.badges[profile.badges.length - 3]['url'] }")
+                  img(class="badges" src="#{ profile.badges[profile.badges.length - 3]['icon_url'] }", alt="#{ profile.badges[profile.badges.length - 3].name }")
+                  h4 #{ profile.badges[profile.badges.length - 3].name }
+                a(href="#{ profile.badges[profile.badges.length - 4]['url'] }")
+                  img(class="badges" src="#{ profile.badges[profile.badges.length - 4]['icon_url'] }", alt="#{ profile.badges[profile.badges.length - 4].name }")
+                  h4 #{ profile.badges[profile.badges.length - 4].name }
         a(class="search-again" href="/") search again
     script(src="http://code.jquery.com/jquery-1.11.3.min.js")
     script(src="/static/bootstrap/js/bootstrap.min.js")

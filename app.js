@@ -32,8 +32,7 @@ app.get('/:username', function(req, res) {
                     //Parse the data
                     var profile = JSON.parse(body);
                     var newProfile = createObject(profile);
-                    res.send(newProfile);
-                    // res.send(profile);
+                    res.render('profile', { newProfile: newProfile, profile: profile });
                 } catch (error) {
                     console.log(error);
                 }
