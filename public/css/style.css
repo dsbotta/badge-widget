@@ -83,7 +83,6 @@ input {
 }
 
 .hide-header {
-    /*display: none;*/
     transform: translateY(-100px);
 }
 
