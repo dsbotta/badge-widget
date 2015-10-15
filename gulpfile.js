@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 
 
 gulp.task('concatScripts', function() {
-	gulp.src(['public/bootstrap/js/bootstrap.js', 'public/js/main.js'])
+	gulp.src(['public/js/jquery.js', 'public/bootstrap/js/bootstrap.js', 'public/js/main.js'])
 	.pipe(concat('app.js'))
 	.pipe(gulp.dest('public/js'));
 });
